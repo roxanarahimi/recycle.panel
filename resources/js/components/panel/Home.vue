@@ -6,36 +6,22 @@
             <Suspense>
                 <template #default>
                   <div class="row">
-                      <h3 class="mb-5 ">جدید ترین محصولات</h3>
+                      <h3 class="mb-5 ">پنل مدیریت</h3>
 
-                      <router-link class="col-sm-6 col-xl-3 mb-3 " :to="'/panel/product/'+item.id" :key="item.id" v-for="item in products" >
-                          <div class="card h-100" >
-                              <div class="card-body text-center justify-content-center" style="display: grid">
-                                  <div style="align-self: center; text-align: center" >
-                                      <img :src="item.thumb" class="img-fluid w-50  " alt="">
-                                  </div>
-                              </div>
-                              <div class="card-footer border-none bg-white">
-                                  <p>{{ item.title }}</p>
+<!--                      <router-link class="col-sm-6 col-xl-3 mb-3 " :to="'/panel/product/'+item.id" :key="item.id" v-for="item in products" >-->
+<!--                          <div class="card h-100" >-->
+<!--                              <div class="card-body text-center justify-content-center" style="display: grid">-->
+<!--                                  <div style="align-self: center; text-align: center" >-->
+<!--                                      <img :src="item.thumb" class="img-fluid w-50  " alt="">-->
+<!--                                  </div>-->
+<!--                              </div>-->
+<!--                              <div class="card-footer border-none bg-white">-->
+<!--                                  <p>{{ item.title }}</p>-->
 
-                              </div>
+<!--                              </div>-->
 
-                          </div>
-                      </router-link>
-                      <h3 class="mb-5 ">جدید ترین دستور پخت ها</h3>
-
-                      <router-link class="col-sm-6 col-xl-3 mb-3" :to="'/panel/article/'+item.id" :key="item.id" v-for="item in articles" >
-                          <div class="card h-100">
-                              <div class="card-body text-center">
-                                  <img :src="item.thumb" class="img-fluid w-50 " alt="">
-                              </div>
-                              <div class="card-footer border-none bg-white">
-                                  <p>{{ item.title }}</p>
-
-                              </div>
-
-                          </div>
-                      </router-link>
+<!--                          </div>-->
+<!--                      </router-link>-->
 
                   </div>
 

@@ -14,6 +14,8 @@
     "/js/ArticleEdit.js": "/js/ArticleEdit.js",
     "/js/Article.js": "/js/Article.js",
     "/js/Slides.js": "/js/Slides.js",
+    "/js/SlideCreate.js": "/js/SlideCreate.js",
+    "/js/SlideEdit.js": "/js/SlideEdit.js",
     "/js/FoodSlideCreate.js": "/js/FoodSlideCreate.js",
     "/js/FoodSlideEdit.js": "/js/FoodSlideEdit.js",
     "/js/BlogCreate.js": "/js/BlogCreate.js",
@@ -23,5 +25,9 @@
     "/js/TeaserEdit.js": "/js/TeaserEdit.js",
     "/js/Teaser.js": "/js/Teaser.js",
     "/js/User.js": "/js/User.js",
+    "/js/userEdit.js": "/js/userEdit.js",
+    "/js/Login.js": "/js/Login.js",
+    "/js/Profile.js": "/js/Profile.js",
+    "/js/siteEdit.js": "/js/siteEdit.js",
     "/css/app.css": "/css/app.css"
 }

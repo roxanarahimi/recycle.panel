@@ -1,12 +1,4 @@
 import {createRouter, createWebHistory} from 'vue-router'
-
-import Login from "./components/panel/admin/Login";
-
-import UserEdit from "./components/panel/user/UserEdit";
-import SlideCreate from "./components/panel/slide/SlideCreate";
-import SlideEdit from "./components/panel/slide/SlideEdit";
-
-import Profile from "./components/panel/admin/Profile";
 import Error404 from "./components/panel/error/Error404";
 
 const routes = [
@@ -128,13 +120,13 @@ const routes = [
     {
         path: "/panel/new/slide",
         name: "SlideCreate",
-        component: SlideCreate,
+        component: () => import(/* webpackChunkName: "SlideCreate" */  './components/panel/slide/SlideCreate'),
         params: true
     },
     {
         path: "/panel/edit/slide/:id",
         name: "SlideEdit",
-        component: SlideEdit,
+        component: () => import(/* webpackChunkName: "SlideEdit" */  './components/panel/slide/SlideEdit'),
         params: true
     },
 
@@ -218,9 +210,6 @@ const routes = [
         params: true
     },
 
-
-
-
     {
         path: "/panel/user/:id",
         name: "User",
@@ -239,23 +228,23 @@ const routes = [
     {
         path: "/panel/edit/user/:id",
         name: "UserEdit",
-        component: UserEdit,
+        component: () => import(/* webpackChunkName: "userEdit" */  './components/panel/user/UserEdit'),
         params: true
     },
     {
         path: "/",
         name: 'Login0',
-        component: Login,
+        component: () => import(/* webpackChunkName: "Login" */  './components/panel/admin/Login'),
     },
     {
         path: "/panel/login",
         name: "Login",
-        component: Login,
+        component: () => import(/* webpackChunkName: "Login" */  './components/panel/admin/Login'),
     },
     {
         path: "/panel/profile",
         name: "Profile",
-        component: Profile,
+        component: () => import(/* webpackChunkName: "Profile" */  './components/panel/admin/Profile'),
     },
 
 
@@ -275,7 +264,12 @@ const routes = [
         params: true,
         props: true
     },
-
+    {
+        path: "/panel/site",
+        name: "SiteEdit",
+        component: () => import(/* webpackChunkName: "siteEdit" */  './components/panel/site/SiteEdit'),
+        params: true
+    },
     // {
     //     path: "/sample",
     //     name: "sample",

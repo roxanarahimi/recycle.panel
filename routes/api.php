@@ -293,15 +293,22 @@ Route::controller(App\Http\Controllers\FoodSlideController::class)->group(functi
         Route::post('/foodSlide/{foodSlide}', 'update');
         Route::get('/delete/foodSlide/{foodSlide}', 'destroy');
         Route::get('/active/foodSlide/{foodSlide}','activeToggle');
-
     });
 });
+
+Route::controller(App\Http\Controllers\SiteController::class)->group(function () {
+
+    Route::get('/site', 'show');
+    Route::prefix('panel')->group(function () {
+        Route::get('/site', 'show');
+        Route::post('/site/{site}', 'update');
+    });
+});
+
+
 //office
 
-
-
 //Route::post('/panel/upload/editor/image',[\App\Http\Controllers\ImageController::class, 'uploadEditorImage']);
-
 
 //other API'S
 

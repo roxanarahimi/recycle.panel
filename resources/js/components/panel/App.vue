@@ -37,6 +37,14 @@
                             <span class="sidebar_title">داشبورد</span>
                         </router-link>
                     </li>
+
+                    <li>
+                        <router-link to="/panel/site" class="nav-link text-white"
+                                     :class="{active: $route.fullPath ==='/panel/site'}">
+                            <i title="اطلاعات سایت" class="bi bi-box2-heart-fill me-2"></i>
+                            <span class="sidebar_title">اطلاعات سایت</span>
+                        </router-link>
+                    </li>
 <!--                    <li>-->
 <!--                        <router-link to="/panel/orders" class="nav-link text-white"-->
 <!--                                     :class="{active: $route.fullPath ==='/panel/orders'}">-->
