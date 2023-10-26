@@ -233,7 +233,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       image_names: [],
       imgRequired: true,
       hasCaption: false,
-      aspect: 16 / 9
+      aspect: false
     };
   },
   mounted: function mounted() {},
