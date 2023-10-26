@@ -53,19 +53,19 @@ class SlideController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all('title'),
-            [
-//                'title' => 'required|unique:slides,title',
-                'title' => 'required',
-            ],
-            [
-                'title.required' => 'لطفا عنوان را وارد کنید',
-//                'title.unique' => 'این عنوان قبلا ثبت شده است',
-            ]
-        );
-        if ($validator->fails()) {
-            return response()->json($validator->messages(), 422);
-        }
+//        $validator = Validator::make($request->all('title'),
+//            [
+////                'title' => 'required|unique:slides,title',
+//                'title' => 'required',
+//            ],
+//            [
+//                'title.required' => 'لطفا عنوان را وارد کنید',
+////                'title.unique' => 'این عنوان قبلا ثبت شده است',
+//            ]
+//        );
+//        if ($validator->fails()) {
+//            return response()->json($validator->messages(), 422);
+//        }
         try {
             $last = Slide::all()->sortByDesc('index')->first();
             $data = Slide::create($request->except('image'));
