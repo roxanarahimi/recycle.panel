@@ -309,10 +309,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
                 _context5.next = 10;
                 return axios.post('/api/panel/slide/' + _this2.$route.params.id, {
-                  image: document.getElementById('Image__code').value,
-                  title: document.getElementById('title').value,
-                  subTitle: document.getElementById('subTitle').value,
-                  link: document.getElementById('link').value
+                  image: document.getElementById('Image__code').value
+                  // title: document.getElementById('title').value,
+                  // subTitle: document.getElementById('subTitle').value,
+                  // link: document.getElementById('link').value,
                 }).then(function (response) {
                   if (response.status === 200) {
                     setTimeout(function () {
@@ -607,54 +607,9 @@ var _hoisted_12 = {
   "class": "row"
 };
 var _hoisted_13 = {
-  "class": "col-md-3 mb-3"
-};
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "title",
-  "class": "form-label"
-}, "عنوان", -1 /* HOISTED */);
-var _hoisted_15 = ["value"];
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  id: "titleHelp",
-  "class": "form-text error"
-}, null, -1 /* HOISTED */);
-var _hoisted_17 = {
-  "class": "form-text error m-0"
-};
-var _hoisted_18 = {
-  "class": "col-md-6 mb-3"
-};
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "subTitle",
-  "class": "form-label"
-}, "زیرنویس", -1 /* HOISTED */);
-var _hoisted_20 = ["value"];
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  id: "subTitleHelp",
-  "class": "form-text error"
-}, null, -1 /* HOISTED */);
-var _hoisted_22 = {
-  "class": "form-text error m-0"
-};
-var _hoisted_23 = {
-  "class": "col-md-3 mb-3"
-};
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "link",
-  "class": "form-label"
-}, "لینک", -1 /* HOISTED */);
-var _hoisted_25 = ["value"];
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  id: "linkHelp",
-  "class": "form-text error"
-}, null, -1 /* HOISTED */);
-var _hoisted_27 = {
-  "class": "form-text error m-0"
-};
-var _hoisted_28 = {
   "class": "col-md-12 mb-3"
 };
-var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ویرایش ");
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ویرایش ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_image_cropper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("image-cropper");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
@@ -670,45 +625,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         hasCaption: $data.hasCaption,
         isRequired: $data.imgRequired,
         aspect: $data.aspect
-      }, null, 8 /* PROPS */, ["src", "hasCaption", "isRequired", "aspect"]), _hoisted_11])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-          hasError: $data.errors.title
-        }, "form-control"]),
-        id: "title",
-        value: $data.data.title,
-        "aria-describedby": "titleHelp",
-        required: ""
-      }, null, 10 /* CLASS, PROPS */, _hoisted_15), _hoisted_16, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.errors.title, function (e) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(e), 1 /* TEXT */);
-      }), 256 /* UNKEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-          hasError: $data.errors.subTitle
-        }, "form-control text-start"]),
-        value: $data.data.subTitle,
-        id: "subTitle",
-        required: ""
-      }, null, 10 /* CLASS, PROPS */, _hoisted_20), _hoisted_21, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.errors.subTitle, function (e) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(e), 1 /* TEXT */);
-      }), 256 /* UNKEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        type: "text",
-        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-          hasError: $data.errors.link
-        }, "form-control"]),
-        id: "link",
-        value: $data.data.link,
-        "aria-describedby": "linkHelp",
-        required: ""
-      }, null, 10 /* CLASS, PROPS */, _hoisted_25), _hoisted_26, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.errors.link, function (e) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(e), 1 /* TEXT */);
-      }), 256 /* UNKEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      }, null, 8 /* PROPS */, ["src", "hasCaption", "isRequired", "aspect"]), _hoisted_11])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    <div class = \"col-md-3 mb-3\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <label for = \"title\" class = \"form-label\">عنوان</label>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <input type = \"text\" :class = \"{hasError: errors.title}\" class = \"form-control\" id = \"title\" :value = \"data.title\" aria-describedby = \"titleHelp\" required>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <div id = \"titleHelp\" class = \"form-text error\"></div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <p class = \"form-text error m-0\" v-for = \"e in errors.title\">{{ e }}</p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    <div class = \"col-md-6 mb-3\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <label for = \"subTitle\" class = \"form-label\">زیرنویس</label>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <input type = \"text\" :class = \"{hasError: errors.subTitle}\" class = \"form-control text-start\" :value = \"data.subTitle\" id = \"subTitle\" required>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <div id = \"subTitleHelp\" class = \"form-text error\"></div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <p class = \"form-text error m-0\" v-for = \"e in errors.subTitle\">{{ e }}</p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    <div class = \"col-md-3 mb-3\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <label for = \"link\" class = \"form-label\">لینک</label>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <input type = \"text\" :class = \"{hasError: errors.link}\" class = \"form-control\" id = \"link\" :value = \"data.link\" aria-describedby = \"linkHelp\" required>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <div id = \"linkHelp\" class = \"form-text error\"></div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <p class = \"form-text error m-0\" v-for = \"e in errors.link\">{{ e }}</p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                    </div>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         "class": "btn btn-primary",
         onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.updateInfo && $options.updateInfo.apply($options, arguments);
         }, ["prevent"])),
         type: "submit"
-      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <button class = \"btn btn-primary\" type = \"submit\">"), _hoisted_29])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])];
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("                                        <button class = \"btn btn-primary\" type = \"submit\">"), _hoisted_14])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])];
     }),
     _: 1 /* STABLE */
   });
