@@ -20,6 +20,8 @@ class SlideResource extends JsonResource
             "index" => $this->index,
             "image" => $this->image,
             "thumb" => $thumb,
+            "video" => $this->video,
+            "type" => $this->type,
             "title" => $this->title,
             "subTitle" => $this->subTitle,
             "link" => $this->link,

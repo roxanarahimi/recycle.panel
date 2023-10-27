@@ -182,7 +182,9 @@ Route::controller(App\Http\Controllers\SlideController::class)->group(function (
         Route::get('/slide', 'index');
         Route::get('/slide/{slide}', 'show');
         Route::post('/slide', 'store');
+        Route::post('/video/slide', 'storeVideo');
         Route::post('/slide/{slide}', 'update');
+        Route::post('/video/slide/{slide}', 'updateVideo');
         Route::post('/delete/slide', 'destroy');
         Route::get('/active/slide/{slide}', 'activeToggle');
     });
