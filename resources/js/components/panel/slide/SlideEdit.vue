@@ -61,7 +61,7 @@
                                                            class="form-control" accept="video/mp4">
 
                                                     <textarea style="opacity: 0;" rows="1" id="code"
-                                                              required></textarea>
+                                                              ></textarea>
                                                     <div id="codeHelp" class="form-text error"></div>
                                                     <p class="videoLoading d-none text-danger">لطفا منتظر بمانید. ویدیو
                                                         در حال لود شدن است...</p>
@@ -142,7 +142,6 @@ export default {
                 .catch();
         },
         async updateInfo() {
-
             this.errors = [];
             let emptyFieldsCount = 0;
             let req = document.querySelectorAll('[required]');
@@ -162,10 +161,6 @@ export default {
                 await axios.post('/api/panel/slide/' + this.$route.params.id,
                     {
                         image: document.getElementById('Image__code').value,
-                        // title: document.getElementById('title').value,
-                        // subTitle: document.getElementById('subTitle').value,
-                        // link: document.getElementById('link').value,
-
                     })
                     .then((response) => {
                         if (response.status === 200) {

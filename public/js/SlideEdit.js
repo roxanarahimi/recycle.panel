@@ -372,9 +372,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context5.next = 7;
                 return axios.post('/api/panel/slide/' + _this2.$route.params.id, {
                   image: document.getElementById('Image__code').value
-                  // title: document.getElementById('title').value,
-                  // subTitle: document.getElementById('subTitle').value,
-                  // link: document.getElementById('link').value,
                 }).then(function (response) {
                   if (response.status === 200) {
                     setTimeout(function () {
@@ -937,8 +934,7 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
     "opacity": "0"
   },
   rows: "1",
-  id: "code",
-  required: ""
+  id: "code"
 }, null, -1 /* HOISTED */);
 var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   id: "codeHelp",
