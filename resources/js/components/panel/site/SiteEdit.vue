@@ -216,7 +216,7 @@ export default {
                 this.data.plastic = document.getElementById('plastic').value;
                 this.data.glass_plastic_weight = document.getElementById('glass_plastic_weight').value;
                 this.data.glass_plastic_price = document.getElementById('glass_plastic_price').value;
-                this.data.slider_delay = document.getElementById('slider_delay').value;
+                this.data.slider_delay = document.getElementById('slider_delay').value*1000;
         },
 
     }
