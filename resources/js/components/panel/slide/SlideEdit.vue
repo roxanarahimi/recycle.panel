@@ -36,7 +36,7 @@
                                                                :aspect="aspect"/>
                                                 <div id="imageHelp" class="form-text error"></div>
                                                 <div class="col-md-12 mb-3">
-                                                    <button class="btn btn-primary" @click.prevent="createInfo"
+                                                    <button class="btn btn-primary" @click.prevent="updateInfo"
                                                             type="submit">
                                                         ثبت
                                                     </button>
