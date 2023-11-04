@@ -17,15 +17,13 @@
                             <template #item = "{element}">
                                 <div :data-id = "element.id" class = "element-cards card  mb-2 me-2 col-md-6 px-0" style = "cursor: pointer">
                                     <div class = "card-body p-2">
-                                        <img v-if = "element.type == 'image'" class = "rounded d-inline-block my-1" width = "120" :src = "element.image">
-                                        <video v-if = "element.type == 'video'" autoplay loop class = "rounded d-inline-block my-1" width = "120" :src="element.video"></video>
+                                        <img  class = "rounded d-inline-block my-1" width = "120" :src = "element.image">
                                         <div v-else class = "rounded d-inline-block my-1" style = "width: 80px; height: 20px;"></div>
-<!--                                        <div class = "d-inline-block " style = "vertical-align: bottom">-->
-<!--                                            <small class = "d-block fw-lighter ms-2 mb-0" style = "vertical-align: bottom; font-size:13px">-->
-<!--                                                {{ element.title }}</small>-->
-<!--                                            <small class = "d-block fw-lighter ms-2 mb-1" style = "vertical-align: bottom; font-size:13px">{{-->
-<!--                                                element.subTitle }}</small>-->
-<!--                                        </div>-->
+                                        <div class = "d-inline-block " style = "vertical-align: bottom">
+                                            <small class = "d-block fw-lighter ms-2 mb-0" style = "vertical-align: bottom; font-size:13px">
+                                                {{ element.type }}</small>
+                                        </div>
+
                                         <div class = "float-end">
                                             <span class = "me-3">
                                                 <span @click = "pActiveToggle(element.id)" v-if = "element.active" class = "badge bg-success text-light"><i class = "bi bi-eye-fill"></i></span>

@@ -287,20 +287,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_ImageCropper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/ImageCropper */ "./resources/js/components/components/ImageCropper.vue");
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../App */ "./resources/js/components/panel/App.vue");
-/* harmony import */ var _components_BtnSubmit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/BtnSubmit */ "./resources/js/components/components/BtnSubmit.vue");
+/* harmony import */ var _components_BtnSubmit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/BtnSubmit */ "./resources/js/components/components/BtnSubmit.vue");
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-// import {toArray} from "../../../public/cropperjs/src/js/utilities";
-
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     ImageCropper: _components_ImageCropper__WEBPACK_IMPORTED_MODULE_1__["default"],
-    btnSubmit: _components_BtnSubmit__WEBPACK_IMPORTED_MODULE_3__["default"]
+    btnSubmit: _components_BtnSubmit__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -316,7 +312,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       isDefined: false,
       enableClick: true,
       features: [],
-      progress: 0
+      progress: 0,
+      type: 'image'
     };
   },
   mounted: function mounted() {
@@ -332,6 +329,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return axios.get('/api/panel/slide/' + _this.id).then(function (response) {
+                  _this.type = response.data.type;
                   _this.data = response.data;
                 }).then(function () {
                   _this.isDefined = true;
@@ -347,7 +345,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     updateInfo: function updateInfo() {
       var _this2 = this;
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
-        var emptyFieldsCount, req;
+        var emptyFieldsCount, req, data;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
@@ -366,16 +364,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   }
                 });
                 if (!(emptyFieldsCount === 0)) {
-                  _context5.next = 7;
+                  _context5.next = 8;
                   break;
                 }
-                _context5.next = 7;
-                return axios.post('/api/panel/slide/' + _this2.$route.params.id, {
-                  image: document.getElementById('Image__code').value
-                }).then(function (response) {
+                if (_this2.type == 'image') {
+                  data = {
+                    type: _this2.type,
+                    image: document.getElementById('Image__code').value,
+                    video: null
+                  };
+                } else if (_this2.type == 'video') {
+                  data = {
+                    type: _this2.type,
+                    image: document.getElementById('Image__code').value,
+                    video: document.getElementById('video').value
+                  };
+                }
+                _context5.next = 8;
+                return axios.post('/api/panel/slide/' + _this2.$route.params.id, data).then(function (response) {
                   if (response.status === 200) {
                     setTimeout(function () {
-                      // this.$router.push({path: '/panel/slide/'+ this.id });
                       _this2.$router.push({
                         path: '/panel/slides'
                       });
@@ -460,7 +468,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                     showAlert();
                   }
                 });
-              case 7:
+              case 8:
               case "end":
                 return _context5.stop();
             }
@@ -468,169 +476,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee5);
       }))();
     },
-    updateInfo1: function updateInfo1() {
-      var _this3 = this;
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee9() {
-        var emptyFieldsCount, req;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee9$(_context9) {
-          while (1) {
-            switch (_context9.prev = _context9.next) {
-              case 0:
-                _this3.errors = [];
-                emptyFieldsCount = 0;
-                req = document.querySelectorAll('[required]');
-                req.forEach(function (element) {
-                  if (element.value === "") {
-                    element.classList.add('hasError');
-                    element.nextSibling.innerHTML = "فیلد اجباری";
-                    emptyFieldsCount++;
-                  } else {
-                    element.classList.remove('hasError');
-                    element.nextSibling.innerHTML = "";
-                  }
-                });
-                if (!(emptyFieldsCount === 0)) {
-                  _context9.next = 7;
-                  break;
-                }
-                _context9.next = 7;
-                return axios.post('/api/panel/video/slide/' + _this3.$route.params.id, {
-                  video: document.getElementById('code').value
-                  // title: document.getElementById('title').value,
-                }).then(function (response) {
-                  console.log(response);
-                  if (response.status === 200) {
-                    setTimeout(function () {
-                      _this3.$router.push({
-                        path: '/panel/slides'
-                      });
-                    }, 1000);
-                  }
-                })["catch"](function (error) {
-                  if (error.response && error.response.status === 422) {
-                    var errorList = Array(error.response.data);
-                    for (var i = 0; i < errorList.length; i++) {
-                      _this3.errors = errorList[i];
-                    }
-                  } else if (error.response.status === 500) {
-                    if (error.response.data.message.includes("SQLSTATE")) {
-                      var showAlertSql = /*#__PURE__*/function () {
-                        var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
-                          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
-                            while (1) {
-                              switch (_context6.prev = _context6.next) {
-                                case 0:
-                                  setTimeout(function () {
-                                    alert(error.response.data.message);
-                                  }, 200);
-                                case 1:
-                                case "end":
-                                  return _context6.stop();
-                              }
-                            }
-                          }, _callee6);
-                        }));
-                        return function showAlertSql() {
-                          return _ref4.apply(this, arguments);
-                        };
-                      }();
-                      console.error('خطای پایگاه داده');
-                      showAlertSql();
-                    } else {
-                      var showAlert500 = /*#__PURE__*/function () {
-                        var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
-                          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
-                            while (1) {
-                              switch (_context7.prev = _context7.next) {
-                                case 0:
-                                  setTimeout(function () {
-                                    alert(error.message + ' ' + error.response.data.message);
-                                  }, 200);
-                                case 1:
-                                case "end":
-                                  return _context7.stop();
-                              }
-                            }
-                          }, _callee7);
-                        }));
-                        return function showAlert500() {
-                          return _ref5.apply(this, arguments);
-                        };
-                      }();
-                      showAlert500();
-                    }
-                  } else {
-                    var showAlert = /*#__PURE__*/function () {
-                      var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
-                        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
-                          while (1) {
-                            switch (_context8.prev = _context8.next) {
-                              case 0:
-                                setTimeout(function () {
-                                  alert(error.message);
-                                }, 200);
-                              case 1:
-                              case "end":
-                                return _context8.stop();
-                            }
-                          }
-                        }, _callee8);
-                      }));
-                      return function showAlert() {
-                        return _ref6.apply(this, arguments);
-                      };
-                    }();
-                    showAlert();
-                  }
-                });
-              case 7:
-              case "end":
-                return _context9.stop();
-            }
-          }
-        }, _callee9);
-      }))();
-    },
-    fileChanged: function fileChanged(e) {
-      var files = e.target.files || e.dataTransfer.files;
-      if (files.length) {
-        document.querySelector('.videoLoading').classList.remove('d-none');
-      }
-      if (files[0].type == 'video/mp4') {
-        if (files[0].size > 20000000) {
-          document.querySelector('#video').value = null;
-          document.querySelector('#code').value = null;
-          alert('حداکثر سایز مجاز 20 مگابایت میباشد');
-          document.querySelector('.videoLoading').classList.add('d-none');
-        } else {
-          var reader = new FileReader();
-          reader.readAsDataURL(files[0]);
-          reader.onloadend = function () {
-            document.querySelector('#code').value = reader.result;
-            document.querySelector('.videoLoading').classList.add('d-none');
-          };
-        }
-      } else {
-        document.querySelector('#video').value = null;
-        document.querySelector('#code').value = null;
-        alert('فرمت باید mp4 باشد');
-        document.querySelector('.videoLoading').classList.add('d-none');
-      }
-    },
-    tabChange: function tabChange(type) {
-      var _document$querySelect, _document$querySelect2, _document$querySelect3, _document$querySelect4;
-      switch (type) {
-        case 'pic':
-          (_document$querySelect = document.querySelector('#video')) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.removeAttribute('required');
-          (_document$querySelect2 = document.querySelector('#Image_')) === null || _document$querySelect2 === void 0 ? void 0 : _document$querySelect2.setAttribute('required', 'required');
-          break;
-        case 'vdo':
-          (_document$querySelect3 = document.querySelector('#Image_')) === null || _document$querySelect3 === void 0 ? void 0 : _document$querySelect3.removeAttribute('required');
-          (_document$querySelect4 = document.querySelector('#video')) === null || _document$querySelect4 === void 0 ? void 0 : _document$querySelect4.setAttribute('required', 'required');
-          break;
-        // default:
-        // code block
-      }
+    typeChanged: function typeChanged() {
+      this.type = document.querySelector('#type').value;
     }
   }
 });
@@ -868,156 +715,96 @@ var _hoisted_5 = {
   "class": "card-body"
 };
 var _hoisted_6 = {
-  "class": "col-12 mb-3"
+  "class": "w-100 mb-3"
 };
 var _hoisted_7 = {
-  "class": "nav nav-tabs",
-  id: "nav-tab",
-  role: "tablist"
-};
-var _hoisted_8 = {
-  "class": "tab-content p-3 border border-top-0 rounded-bottom",
-  id: "nav-tabContent"
-};
-var _hoisted_9 = {
-  "class": "tab-pane active fade show",
-  id: "nav-home",
-  role: "tabpanel",
-  "aria-labelledby": "nav-home-tab"
-};
-var _hoisted_10 = {
   id: "editForm"
 };
-var _hoisted_11 = {
+var _hoisted_8 = {
   "class": "row"
 };
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_9 = {
+  "class": "col-md-6 col-lg-3 mb-3"
+};
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "type",
+  "class": "mb-2"
+}, "نوع اسلاید", -1 /* HOISTED */);
+var _hoisted_11 = ["selected"];
+var _hoisted_12 = ["selected"];
+var _hoisted_13 = {
+  "class": "col-12"
+};
+var _hoisted_14 = {
+  key: 0,
   "class": "form-label"
-}, "تصویر", -1 /* HOISTED */);
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+var _hoisted_16 = {
+  key: 1,
+  "class": "form-label"
+};
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   id: "imageHelp",
   "class": "form-text error"
 }, null, -1 /* HOISTED */);
-var _hoisted_15 = {
-  "class": "col-md-12 mb-3"
+var _hoisted_19 = {
+  key: 0,
+  "class": "col-md-6 col-lg-3 mb-3"
 };
-var _hoisted_16 = {
-  "class": "tab-pane fade",
-  id: "nav-profile",
-  role: "tabpanel",
-  "aria-labelledby": "nav-profile-tab"
-};
-var _hoisted_17 = {
-  "class": "row"
-};
-var _hoisted_18 = {
-  "class": "col-12 col-md-6"
-};
-var _hoisted_19 = ["src"];
-var _hoisted_20 = {
-  id: "editForm1",
-  enctype: "multipart/form-data"
-};
-var _hoisted_21 = {
-  "class": "row"
-};
-var _hoisted_22 = {
-  "class": "col-12 col-xl-6 mb-3"
-};
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "class": "form-label"
-}, "ویدیو", -1 /* HOISTED */);
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-  style: {
-    "opacity": "0"
-  },
-  rows: "1",
-  id: "code"
-}, null, -1 /* HOISTED */);
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  id: "codeHelp",
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "video",
+  "class": "mb-2"
+}, "شناسه cloudinary ویدئو", -1 /* HOISTED */);
+var _hoisted_21 = ["value"];
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  id: "videoHelp",
   "class": "form-text error"
 }, null, -1 /* HOISTED */);
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "videoLoading d-none text-danger"
-}, "لطفا منتظر بمانید. ویدیو در حال لود شدن است...", -1 /* HOISTED */);
-var _hoisted_28 = {
-  "class": "row"
-};
-var _hoisted_29 = {
+var _hoisted_23 = {
   "class": "col-md-12 mb-3"
 };
-var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" ثبت ");
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_image_cropper = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("image-cropper");
-  var _component_btn_submit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("btn-submit");
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
     name: "route",
     mode: "out-in",
     appear: ""
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [$data.isDefined ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        "class": "nav-link active w-50",
-        id: "nav-home-tab",
-        onClick: _cache[0] || (_cache[0] = function ($event) {
-          return $options.tabChange('pic');
-        }),
-        "data-bs-toggle": "tab",
-        "data-bs-target": "#nav-home",
-        type: "button",
-        role: "tab",
-        "aria-controls": "nav-home",
-        "aria-selected": "true"
-      }, "آپلود تصویر "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        "class": "nav-link w-50",
-        id: "nav-profile-tab",
-        onClick: _cache[1] || (_cache[1] = function ($event) {
-          return $options.tabChange('vdo');
-        }),
-        "data-bs-toggle": "tab",
-        "data-bs-target": "#nav-profile",
-        type: "button",
-        role: "tab",
-        "aria-controls": "nav-profile",
-        "aria-selected": "false"
-      }, "آپلود ویدئو ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_image_cropper, {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [$data.isDefined ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+        id: "type",
+        "class": "form-select",
+        onChange: _cache[0] || (_cache[0] = function () {
+          return $options.typeChanged && $options.typeChanged.apply($options, arguments);
+        })
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+        value: "image",
+        selected: $data.data.type == 'image'
+      }, "تصویر", 8 /* PROPS */, _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+        value: "video",
+        selected: $data.data.type == 'video'
+      }, "ویدئو", 8 /* PROPS */, _hoisted_12)], 32 /* HYDRATE_EVENTS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [$data.type == 'image' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_14, "تصویر")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_15, $data.type == 'video' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_16, "کاور ویدئو")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_image_cropper, {
         name: "",
         src: $data.data.image,
         caption: "",
         hasCaption: $data.hasCaption,
         isRequired: $data.imgRequired,
         aspect: $data.aspect
-      }, null, 8 /* PROPS */, ["src", "hasCaption", "isRequired", "aspect"]), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      }, null, 8 /* PROPS */, ["src", "hasCaption", "isRequired", "aspect"]), _hoisted_18]), $data.type == 'video' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "text",
+        id: "video",
+        value: $data.data.video,
+        "class": "form-control",
+        required: ""
+      }, null, 8 /* PROPS */, _hoisted_21), _hoisted_22])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
         "class": "btn btn-primary",
-        onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+        onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.updateInfo && $options.updateInfo.apply($options, arguments);
         }, ["prevent"])),
         type: "submit"
-      }, " ثبت ")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("video", {
-        "class": "w-100 mb-2",
-        width: "200",
-        src: $data.data.video,
-        autoplay: "",
-        controls: ""
-      }, null, 8 /* PROPS */, _hoisted_19)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-        id: "video",
-        type: "file",
-        onChange: _cache[3] || (_cache[3] = function ($event) {
-          return $options.fileChanged($event);
-        }),
-        "class": "form-control",
-        accept: "video/mp4"
-      }, null, 32 /* HYDRATE_EVENTS */), _hoisted_25, _hoisted_26, _hoisted_27])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_btn_submit, {
-        onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($options.updateInfo1, ["prevent"])
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_30];
-        }),
-        _: 1 /* STABLE */
-      }, 8 /* PROPS */, ["onClick"])])])])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])];
+      }, " ثبت ")])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])];
     }),
     _: 1 /* STABLE */
   });
